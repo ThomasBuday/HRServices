@@ -1,0 +1,23 @@
+﻿@model Person
+
+<h1>Details for @Model.Name</h1>
+
+<div>
+    <label>Id</label>
+    <p>@Model.Id</p>
+</div>
+<div>
+    <label>Name</label>
+    <p>@Model.Name</p>
+</div>
+<div>
+    <label>Phone Number</label>
+    <p>@Model.PhoneNumber</p>
+</div>
+<div>
+    <label>City</label>
+    <p>@Model.City</p>
+</div>
+
+<a href="@Url.Action("Delete", new { id = Model.Id })">Delete</a>
+<a href="@Url.Action("Index")">Back to List</a>

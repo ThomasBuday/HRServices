@@ -1,0 +1,48 @@
+﻿@model PeopleViewModel;
+
+<h1>People</h1>
+
+<form method="get">
+    <input type="text" name="search" value="@Model.SearchTerm" />
+    <label>
+        <input type="checkbox" name="caseSensitive" @(Model.CaseSensitive ? "checked" : "") />
+        Case Sensitive
+    </label>
+    <label>
+        <input type="checkbox" name="exactMatch" @(Model.ExactMatch ? "checked" : "") />
+        Exact Match
+    </label>
+    <label>
+        <input type="checkbox" name="searchByCity" @(Model.SearchByCity ? "checked" : "") />
+        Search by City
+    </label>
+    <button type="submit">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="name_asc">Name &#9652;</a>
+                <a asp-action="Index" asp-route-sortOrder="name_desc">&#9662;</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="city_asc">City &#9652;</a>
+                <a asp-action="Index" asp-route-sortOrder="city_desc">&#9662;</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model.People)
+        {
+            <tr>
+                <td>@person.Name</td>
+                <td>@person.City</td>
+                <td><a href="@Url.Action("Details", new { id = person.Id })">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")">Create New Person</a>  <!-- Opens Create.cshtml --*>
